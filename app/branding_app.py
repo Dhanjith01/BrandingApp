@@ -1,12 +1,10 @@
 import os
 from typing import List
 from groq import Groq
-from dotenv import load_dotenv
 import argparse
 import re
 
 MAX_INPUT_LENGTH=12
-load_dotenv()
 
 def main():
   parser=argparse.ArgumentParser()
@@ -79,7 +77,7 @@ def generate_branding_snippet(prompt: str)->str:
           "content": enriched_prompt
         }
       ],
-      temperature=0.6,
+      temperature=0.88,
       max_completion_tokens=32,
       top_p=1,
       stream=False,
@@ -96,7 +94,7 @@ def generate_branding_snippet(prompt: str)->str:
   last_char=branding_message[-1]
   if last_char!="\"":
     branding_message+="...\""
-    
+  branding_message=branding_message.strip("\"")
   print(f"Results: {branding_message}")
   return branding_message
 
