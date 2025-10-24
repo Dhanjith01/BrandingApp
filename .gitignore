@@ -205,3 +205,42 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+# dependencies
+branding_app-site/node_modules
+branding_app-site/.pnp
+branding_app-site/.pnp.*
+branding_app-site/.yarn/*
+!branding_app-site/.yarn/patches
+!branding_app-site/.yarn/plugins
+!branding_app-site/.yarn/releases
+!branding_app-site/.yarn/versions
+
+# testing
+branding_app-site/coverage
+
+# next.js
+branding_app-site/.next/
+branding_app-site/out/
+
+# production
+branding_app-site/build
+
+# misc
+branding_app-site/.DS_Store
+branding_app-site/*.pem
+
+# debug
+branding_app-site/npm-debug.log*
+branding_app-site/yarn-debug.log*
+branding_app-site/yarn-error.log*
+branding_app-site/.pnpm-debug.log*
+
+# env files
+branding_app-site/.env*
+
+# vercel
+branding_app-site/.vercel
+
+# typescript
+branding_app-site/*.tsbuildinfo
+branding_app-site/next-env.d.ts
