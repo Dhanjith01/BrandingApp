@@ -38,12 +38,17 @@ const BrandingApp:React.FC=()=>{
     else{
         displayedElement=<Form prompt={prompt} setPrompt={setPrompt} onSubmit={onSubmit} isLoading={isLoading} characterLimit={CHARACTER_LIMIT}/>;
     }
+
+
     return( 
-    <>
-        <h1>
-            BrandingApp!
-        </h1>
-        {displayedElement}
+    <>  <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 p-6">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                BrandingApp!
+            </h1>
+            <div className="w-full max-w-md mx-auto">
+                {displayedElement}
+            </div>
+        </div>
     </>
     )
 }
