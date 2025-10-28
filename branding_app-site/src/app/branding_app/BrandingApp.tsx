@@ -21,7 +21,6 @@ const BrandingApp:React.FC=()=>{
         console.log("Submitting "+prompt);
         setIsLoading(true);
         const token = await auth.currentUser?.getIdToken();
-        console.log(token);
         fetch(`${Endpoint}?prompt=${prompt}`,{
           method: "GET",
           headers: {
