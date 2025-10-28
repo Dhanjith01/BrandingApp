@@ -15,4 +15,3 @@ An AI-powered branding assistant that generates marketing snippets and keywords 
 **Auth:** Firebase (Google Provider, JWT Verification)  
 **AI Model:** LLaMA-3.1-8B-Instant (Groq API)  
 **Deployment:** AWS Lambda, Vercel  
-**Email:** SMTP, `email.mime`
