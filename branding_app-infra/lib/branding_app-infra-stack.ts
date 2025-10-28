@@ -26,7 +26,8 @@ export class BrandingAppInfraStack extends cdk.Stack {
       code:lambda.Code.fromAsset("../app/"),
       handler:"branding_app_api.handler",
       environment:{
-        GROQ_API_KEY:process.env.GROQ_API_KEY??""
+        GROQ_API_KEY:process.env.GROQ_API_KEY!,
+        FIREBASE_CONFIG:process.env.FIREBASE_CONFIG!
       },
       layers:[layer],
     });

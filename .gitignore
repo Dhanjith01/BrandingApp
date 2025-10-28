@@ -243,3 +243,12 @@ branding_app-site/.vercel
 # typescript
 branding_app-site/*.tsbuildinfo
 branding_app-site/next-env.d.ts
+
+*.js
+!jest.config.js
+*.d.ts
+node_modules
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out

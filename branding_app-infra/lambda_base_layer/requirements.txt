@@ -2,3 +2,4 @@ fastapi
 mangum
 groq
 requests
+firebase_admin
