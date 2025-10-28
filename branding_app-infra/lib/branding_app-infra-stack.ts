@@ -27,7 +27,9 @@ export class BrandingAppInfraStack extends cdk.Stack {
       handler:"branding_app_api.handler",
       environment:{
         GROQ_API_KEY:process.env.GROQ_API_KEY!,
-        FIREBASE_CONFIG:process.env.FIREBASE_CONFIG!
+        FIREBASE_CONFIG:process.env.FIREBASE_CONFIG!,
+        GMAIL_USER :process.env.GMAIL_USER!,
+        GMAIL_APP_PASSWORD:process.env.GMAIL_APP_PASSWORD!
       },
       layers:[layer],
     });
