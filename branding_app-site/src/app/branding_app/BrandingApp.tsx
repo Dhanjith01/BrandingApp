@@ -15,12 +15,34 @@ const BrandingApp:React.FC=()=>{
     const[keyword,setKeyword]=React.useState([]);
     const[hasResult,setHasResult]=React.useState(false);
     const[isLoading,setIsLoading]=React.useState(false);
-
+    const [token, setToken] = React.useState<string | null>(null);
+    const [authReady, setAuthReady] = React.useState(false);
     const Endpoint:string=process.env.NEXT_PUBLIC_API_ENDPOINT_GEN!;
+
+    React.useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          const idToken = await user.getIdToken();
+          setToken(idToken);
+        }
+        setAuthReady(true);
+      });
+      return unsubscribe;
+    }, [auth]);
+
     const onSubmit=async()=>{
+        if (!authReady) {
+          console.warn("Auth not ready yet — try again shortly");
+          return;
+        }
+        const idToken = token || (await auth.currentUser?.getIdToken());
+        if (!idToken) {
+          console.error("No token available yet");
+          return;
+        }
+
         console.log("Submitting "+prompt);
         setIsLoading(true);
-        const token = await auth.currentUser?.getIdToken();
         fetch(`${Endpoint}?prompt=${prompt}`,{
           method: "GET",
           headers: {
