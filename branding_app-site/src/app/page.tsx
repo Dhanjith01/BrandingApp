@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { InitApp } from "./firebase";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import React from "react";
 
 
 export default function Home() {
@@ -12,10 +13,19 @@ export default function Home() {
   const provider = new GoogleAuthProvider();
   provider.addScope('profile');
   provider.addScope('email');
+  const [loading, setLoading] = React.useState(false);
   const signIn = async()=>{
-    const result=await signInWithPopup(auth, provider);
-    console.log(auth.currentUser?.email);
-    router.push('/branding_app');
+    if (loading) return; // prevent double click
+    setLoading(true);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log(auth.currentUser?.email);
+      router.push("/branding_app");
+    } 
+    catch (error) {
+      console.error("Sign-in failed:", error);
+      setLoading(false); // re-enable button if failed
+    }
   }
   
   return (
@@ -26,7 +36,11 @@ export default function Home() {
   </h1>
   <button 
     onClick={signIn}
-    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-medium shadow-md transition-transform hover:scale-105"
+    className={`px-6 py-3 rounded-lg text-lg font-medium shadow-md transition-transform ${
+          loading
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-blue-500 hover:bg-blue-600 text-white hover:scale-105"
+        }`}
   >
     Continue with Google
   </button>
